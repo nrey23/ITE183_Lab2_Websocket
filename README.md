@@ -6,6 +6,13 @@ A real-time WebSocket chat application developed using **Bonezegei Scripting Lan
 
 This laboratory demonstrates how a WebSocket server enables real-time, full-duplex communication between multiple connected clients. Users can send messages and receive broadcasts without refreshing their browsers.
 
+## Laboratory Report
+
+The complete laboratory report includes the implementation
+process, screenshots, testing results, and conclusion.
+
+[View Laboratory 2 Report (PDF)](docs/Licanda_ITE183_Laboratory_2_WebSocket_Report.pdf)
+
 ## Features
 
 - HTTP server running on port `8000`
