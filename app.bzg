@@ -1,0 +1,47 @@
+
+include("lib/http.bzg");
+
+// Start HTTP and WebSocket server on port 8000
+var server = http(8000);
+
+// ==========================================
+// HTTP EVENT HANDLERS
+// ==========================================
+
+server.get = function (path, data) {
+    print("GET Request: " + path);
+
+    if (path == "/") {
+        server.sendFile("public/index.html");
+    }
+    else {
+        server.sendFile("public/404.html");
+    }
+};
+
+// ==========================================
+// WEBSOCKET EVENT HANDLERS
+// ==========================================
+
+// Handle new client connections
+server.onConnect = function (clientId) {
+    print("WebSocket connected! Client ID: " + clientId);
+
+    server.send(clientId, "Welcome to WebSocket server!");
+};
+
+// Handle messages from clients
+server.onData = function (message, clientId) {
+    print("Received from Client " + clientId + ": " + message);
+
+    // Broadcast message to all connected clients
+    server.sendAll("User " + clientId + " says: " + message);
+};
+
+// Handle client disconnections
+server.onDisconnect = function (clientId) {
+    print("WebSocket disconnected! Client ID: " + clientId);
+};
+
+// Start the server
+server.run();
